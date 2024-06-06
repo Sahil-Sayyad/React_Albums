@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
+import toast, { Toaster } from 'react-hot-toast';
 import axios from "axios";
 import { Link } from 'react-router-dom';
+
+
 function AlbumComponent() {
 
     const [albums, setAlbums] = useState()
@@ -29,6 +32,7 @@ function AlbumComponent() {
             const response = await axios.post('https://jsonplaceholder.typicode.com/albums', {
                 title, userId
             });
+            toast.success("Album added successfully!");
             setAlbums([...albums, response.data]);
             setTitle('');
         } catch (error) {
@@ -41,6 +45,7 @@ function AlbumComponent() {
             await axios.put(`https://jsonplaceholder.typicode.com/albums/${id}`, {
                 title: newTitle,
             });
+            toast.success("Album updated successfully!");
             setAlbums(albums.map(album => (album.id === id ? { ...album, title: newTitle } : album)));
         } catch (error) {
             console.error('Error updating album:', error);
@@ -50,6 +55,7 @@ function AlbumComponent() {
     const deleteAlbum = async (id) => {
         try {
             await axios.delete(`https://jsonplaceholder.typicode.com/albums/${id}`);
+            toast.success("Album deleted successfully!");
             setAlbums(albums.filter(album => album.id !== id));
         } catch (error) {
             console.error('Error deleting album:', error);
@@ -77,6 +83,7 @@ function AlbumComponent() {
                             Add Album
                         </button>
 
+
                     </div>
 
                     <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
@@ -92,6 +99,7 @@ function AlbumComponent() {
                     </div>
                 </div>
             </nav>
+            <Toaster />
 
             {/** Main Display Albums Section*/}
             <div className='containter mx-auto px-4 mt-20'>

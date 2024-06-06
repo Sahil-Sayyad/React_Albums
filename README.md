@@ -49,3 +49,6 @@
   ── vite.config.js
   ── tailwind.config.js ------------------------------ Entire theme config, colors, fonts etc.
 ```
+## Demo Video
+[Demo Video](https://github.com/Sahil-Sayyad/React_Albums/assets/96423459/3561645b-a721-4af3-8725-8984abeb81b0)
+
